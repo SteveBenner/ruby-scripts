@@ -1,0 +1,9 @@
+sync = {
+	default.rsync,
+	source = "/Users/neo/Downloads/test1.txt",
+	target = "/Users/neo/Downloads/test2.txt",
+	rsync = {
+		binary = "/usr/local/bin/rsync",
+		archive = "true"
+	}
+}
