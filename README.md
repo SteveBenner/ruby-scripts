@@ -8,3 +8,6 @@ I currently use OS X 10.9 Mavericks; scripts are not tested for other operating 
 Scripts used for system-based tasks, configuration, and shortcuts, often as an alternative to Bash.
 
 - `diff-wrapper` executes a script to launch diff tool (RubyMine in this case) used with `git difftool`
+
+### Gists
+Some tiny scripts I came up with. Most exists as gists on my GitHub account.
