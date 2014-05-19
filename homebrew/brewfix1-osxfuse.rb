@@ -59,4 +59,5 @@ ensure
   LIBS.each {|lib| File.symlink "#{TRUECRYPT_LIB_PATH}/#{File.basename(lib)}", lib }
 end
 
+puts "Homebrew 'osxfuse dylib' fix applied successfully! Latest version at: https://gist.github.com/SteveBenner/10938596"
 puts `brew prune && brew doctor`
