@@ -1,11 +1,11 @@
 # Ruby Scripts
-**DISCLAIMER**: There are scripts contained in this repository that contain code taken from online sources, for which I claim neither ownership nor authorship. I will do my best to attribute credit to the original authors and provide software licenses where pertinent. I provide and utilize these scripts with the understanding that in doing so, I am not violating any law. If there is any copyright or licensing information missing from this repository which should be included, please contact me ASAP or submit a pull request, so the situation may be corrected.
+These are Ruby scripts I've either authored or modified.
 
-I currently use OS X 10.9 Mavericks; scripts are not tested for other operating systems.
+Note: Scripts are designed and tested for use in **OS X 10.9 Mavericks** using my unique environment and tools; their functionality is not guaranteed in other systems.
 
 ---
 ### Homebrew
-Fixes for Homebrew issues
+Tools and for improving Homebrew and solving related issues
 
 **1. osxfuse** Some software, such as Bitcasa and TrueCrypt, install libs that don't brew nicely with others
 
@@ -16,3 +16,8 @@ Some miscellaneous scripts I wrote to make my life easier, or just for fun/exper
 - `sass-convert-dir` I wrote this before I knew about `sass-convert -R`, haha
 - `shortcuttr` A neat script for creating executable bash scripts that act as bash command shortcuts
 
+### Fun
+- `lolping` Helps me from being farked up in solo Q by testing latency of their servers
+
+---
+**DISCLAIMER**: There are scripts contained in this repository that contain code taken from online sources, for which I claim neither ownership nor authorship. I will do my best to attribute credit to the original authors and provide software licenses where pertinent. I provide and utilize these scripts with the understanding that in doing so, I am not violating any law. If there is any copyright or licensing information missing from this repository which should be included, please contact me ASAP or submit a pull request, so the situation may be corrected.
