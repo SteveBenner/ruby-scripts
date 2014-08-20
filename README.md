@@ -4,11 +4,6 @@ These are Ruby scripts I've either authored or modified.
 Note: Scripts are designed and tested for use in **OS X 10.9 Mavericks** using my unique environment and tools; their functionality is not guaranteed in other systems.
 
 ---
-### Homebrew
-Tools and for improving Homebrew and solving related issues
-
-**1. osxfuse** Some software, such as Bitcasa and TrueCrypt, install libs that don't brew nicely with others
-
 ### Util
 Some miscellaneous scripts I wrote to make my life easier, or just for fun/experimentation.
 
@@ -20,4 +15,4 @@ Some miscellaneous scripts I wrote to make my life easier, or just for fun/exper
 - `lolping` Helps me from being farked up in solo Q by testing latency of their servers
 
 ---
-**DISCLAIMER**: There are scripts contained in this repository that contain code taken from online sources, for which I claim neither ownership nor authorship. I will do my best to attribute credit to the original authors and provide software licenses where pertinent. I provide and utilize these scripts with the understanding that in doing so, I am not violating any law. If there is any copyright or licensing information missing from this repository which should be included, please contact me ASAP or submit a pull request, so the situation may be corrected.
+**DISCLAIMER**: There may be scripts contained in this repository that contain code taken from online sources, for which I claim neither ownership nor authorship. I will do my best to attribute credit to the original authors and provide software licenses where pertinent. I provide and utilize these scripts with the understanding that in doing so, I am not violating any law. If there is any copyright or licensing information missing from this repository which should be included, please contact me ASAP or submit a pull request, so the situation may be corrected.

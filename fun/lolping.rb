@@ -17,16 +17,20 @@ SERVERS = [
 longest_ip = SERVERS.max_by { |s| s.length }
 SERVERS.collect! { |s| s << ' '*(longest_ip.length - s.length) }
 
-PING_COUNT = ARGV.first || 100
-SERVERS.each do |server|
-	results = `ping -c #{PING_COUNT} #{server}`.scan(/time=(\d*\.\d*)/)
-	avg_latency = results.flatten.map(&:to_f).reduce(:+) / results.count.to_f
-	color = case avg_latency
-    when 0..200 then :cyan
-    when 201..300 then :yellow
-    else :red
+DEFAULT_LENGTH = 30 # number of seconds (1 ping per second)
+PING_COUNT = ARGV.first || DEFAULT_LENGTH
+puts "Pinging servers #{PING_COUNT.white} times using #{SERVERS.count.white} threads..."
+threads = SERVERS.collect do |server|
+  Thread.new(server) do |server|
+  	results = `ping -c #{PING_COUNT} #{server}`.scan(/time=(\d*\.\d*)/)
+  	avg_latency = results.flatten.map(&:to_f).reduce(:+) / results.count.to_f
+  	color = case avg_latency
+      when 0..200 then :cyan
+      when 201..300 then :yellow
+      else :red
+    end
+  	puts "Pinging #{server.magenta} #{PING_COUNT.to_s.white} times resulted in "\
+  			 "average latency of: #{avg_latency.to_s.colorize(color: color)}"
   end
-	puts "Pinging #{server.magenta} #{PING_COUNT.to_s.white} times resulted in "\
-			 "average latency of: #{avg_latency.to_s.colorize(color: color)}"
 end
-
+threads.map &:join
