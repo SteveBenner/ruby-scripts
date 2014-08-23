@@ -4,7 +4,6 @@
 # within the current git repository, as defined by TAB_SIZES.
 #
 TAB_SIZES = { rb: 2, coffee: 2, sass: 2, slim: 2, js: 4 }
-# Dir.glob("../../**/*.{#{TAB_SIZES.keys.join(',')}") do |file|
 EXTENSIONS = TAB_SIZES.keys.map { |ext| ".#{ext.to_s}" }
 `git ls-files --full-name`.split.select { |f| EXTENSIONS.include? File.extname(f) }.each do |file|
 	path = File.expand_path(file)
