@@ -25,7 +25,7 @@ lowest, highest = [], []
 DEFAULT_NUM_PINGS = 30
 PING_COUNT = ARGV.first || DEFAULT_NUM_PINGS
 
-puts "Pinging servers #{PING_COUNT.to_s.white} times using #{SERVERS.count.to_s.white} threads..."
+puts "Pinging #{SERVERS.count.to_s.white} servers concurrently, for #{PING_COUNT.to_s.white} seconds..."
 
 threads = SERVERS.collect do |server|
   Thread.new(server) do |server|
