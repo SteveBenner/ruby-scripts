@@ -29,7 +29,11 @@ puts "Pinging #{SERVERS.count.to_s.white} servers concurrently, for #{PING_COUNT
 
 threads = SERVERS.collect do |server|
   Thread.new(server) do |server|
-	  results     = `ping -c #{PING_COUNT} #{server}`.scan(/time=(\d*\.\d*)/).flatten.map! &:to_f
+	  begin
+		  results   = `ping -c #{PING_COUNT} #{server}`.scan(/time=(\d*\.\d*)/).flatten.map! &:to_f
+	  rescue
+		  abort 'ERROR: Unable to form a connection; there may be a problem with your network.'
+	  end
 	  avg_latency = results.reduce(:+) / results.count.to_f
 	  lowest     << results.min
 	  highest    << results.max
