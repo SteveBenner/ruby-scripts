@@ -1,27 +1,29 @@
 #!/usr/bin/env ruby
-
-# This is an idea I have for a Slim 'rc' configuration file
+#
+# This is an idea I have for a Slim 'rc' type configuration file
 # Because I found my self compiling Slim templates via the command-line
 # program 'slimrb' so often, I figured this would be a nice way to
 # configure some things in Ruby as you would naturally do in a framework
 
+#
+
 # Define default options for Slim::Engine here; they will be added at runtime
-DEFAULT_OPTIONS = {
+DEFAULT_SLIM_OPTIONS = {
 	shortcut: {
 		'@' => {tag: 'link', rel: 'stylesheet', attr: 'href'}
 	}
 }
 
-require 'temple'
-module Temple
-	class Engine
-		def self.inherited(slim_engine)
-			@default_options = DEFAULT_OPTIONS
-		end
-	end
-end
+# require 'temple'
+# module Temple
+# 	class Engine
+# 		def self.inherited(slim_engine)
+# 			@default_options = DEFAULT_SLIM_OPTIONS
+# 		end
+# 	end
+# end
 
-load `which slimrb`.chomp
+# load `which slimrb`.chomp
 # exec ENV, `which slimrb`.chomp *ARGV
 
 # this is sort-of almost working...

@@ -41,13 +41,13 @@ libs = %w[libxml2 libxslt libiconv]
 
 # Install and link them using Homebrew
 `brew update`
-%w[install link].each { |command| `brew #{command} #{libs.shelljoin}` }
+%w[install link].each { |command| `brew #{command} #{libs.join(' ')}` }
 
 # Use the latest versions of installed libraries from your Homebrew installation
 paths = libs.inject({}) do |libs, lib|
   # It's easy to find the library paths with the 'brew' executable
   # In fact, it's probably not even necessary to use Pathname or #realpath
-  libs[lib.to_sym] = Pathname(`brew --prefix #{lib}`.chomp).realpath
+  libs[lib.to_sym] = File.realpath `brew --prefix #{lib}`.chomp
   libs
 end
 
@@ -71,5 +71,5 @@ else
 end
 
 puts
-puts "Mac 'Nokogiri installation' fix applied successfully! Latest version at:"\
-     "https://gist.github.com/SteveBenner/de51738222e92d606487"
+puts "Mac 'Nokogiri installation' fix applied successfully! Latest version at: " +
+     'https://gist.github.com/SteveBenner/de51738222e92d606487'
