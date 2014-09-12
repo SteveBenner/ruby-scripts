@@ -22,7 +22,7 @@ longest_ip = SERVERS.max_by { |s| s.length }
 SERVERS.collect! { |s| s << ' '*(longest_ip.length - s.length) }
 
 lowest, highest = [], []
-DEFAULT_NUM_PINGS = 30
+DEFAULT_NUM_PINGS = 120
 PING_COUNT = ARGV.first || DEFAULT_NUM_PINGS
 
 puts "Pinging #{SERVERS.count.to_s.white} servers concurrently, for #{PING_COUNT.to_s.white} seconds..."
