@@ -7,14 +7,14 @@ Note: Scripts are designed and tested for use in **OS X 10.9 Mavericks** using m
 ### [Fun](fun/)
 - `lolping` Tests the latency of several Riot servers and prints out the average ping for given time period
 
-### [Git Hooks](git-hooks/)
+### [Git hooks](git-hooks/)
 Scripts I've made to execute on git events to automate certain tasks.
 
 ### [Homebrew](homebrew/)
 Utilities and fixes for [Homebrew](http://brew.sh/).
 
-### [Mac OS X](mac-osx/)
-Scripts specifically for Mac related issues or environments.
+### [Mac OS X fixes](https://github.com/SteveBenner/mac-osx-fixes)
+Run-once Ruby solutions to common problems plaguing Mac OS X
 
 ### Util
 Some miscellaneous scripts I wrote to make my life easier, or just for fun/experimentation.
