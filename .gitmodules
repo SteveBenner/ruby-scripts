@@ -1,0 +1,3 @@
+[submodule "mac-osx-fixes"]
+	path = mac-osx-fixes
+	url = git@github-personal:SteveBenner/mac-osx-fixes.git
