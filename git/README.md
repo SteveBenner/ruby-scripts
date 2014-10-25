@@ -1,4 +1,10 @@
-# Git Hooks
+# Scripts for Git
+As one of my most-often used tools and extremely complex, Git will undeniably remain a major focus of my scripting far into the future.
+
+# Library
+I intend to use the `grit` gem fairly soon, and/or incorporate it into my own library, but for now I rely on some stuff I wrote from scratch...
+
+# Hooks
 
 ## Pre-Commit
 

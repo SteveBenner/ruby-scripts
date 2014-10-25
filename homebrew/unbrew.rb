@@ -25,7 +25,7 @@ options = {
 }
 
 optparser = OptionParser.new do |opts|
-	opts.banner = 'Homebrew uninstaller' + "\n"
+  opts.banner = 'Homebrew uninstaller' + $/
   opts.on('-q', '--quiet', 'Quiet mode - suppress output.') do |setting|
     options[:quiet]   = setting
     options[:verbose] = false
