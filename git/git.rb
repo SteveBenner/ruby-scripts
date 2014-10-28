@@ -5,32 +5,18 @@ require 'uri'
 
 $cli_opts ||= {quiet: false}
 
-# todo: extract the below class code into a library
-class GitRepo
-	attr_accessor :uri
-
-	def initialize(uri)
-		@uri = URI uri
-	end
-end
-class RemoteRepo < GitRepo
-	attr_reader :type
-
-	def initialize(uri)
-		super(uri)
-		@type = :remote
-	end
-end
-
 # todo: integrate with or improve using 'grit' gem
-REPO_DIRS = %w[~/github ~/bitbucket]
-REPOS = REPO_DIRS.collect_concat do |repo_dir|
-	Pathname(repo_dir).expand_path.children.select { |d| d.join('.git').directory? }
-end
+
 module Git
+	# My local git repositories
+	REPO_DIRS = %w[~/github ~/bitbucket]
+	REPOS = REPO_DIRS.collect_concat do |dir|
+		Pathname(dir).expand_path.children.select { |d| d.join('.git').directory? }
+	end
+
 	# Identifier representing host URI's I use for git repositories
 	GIT_HOSTS = {
-	gh: 'github.com:SteveBenner', bb: 'bitbucket.org:SteveBenner09'
+		gh: 'github.com:SteveBenner', bb: 'bitbucket.org:SteveBenner09'
 	}
 
 	# Folders containing my git repositories
@@ -39,9 +25,6 @@ module Git
 	#
 	# @param [String, Pathname] local_repo Directory containing a Git repository
 	# @param [String, RemoteRepo, Symbol] remote The remote repository to assign to the local git repo
-	#   When a Symbol is given instead of the URI of a repo or repo object, it matches with list of
-	#   git host identifiers stored in the {Git} module and creates a RemoteRepo with respective host.
-	# @return [[LocalRepo, RemoteRepo]] If successful, returns {GitRepo} objects for the local and
 	#   remote repositories involved in the operation
 	# todo: add an error tag here
 	#
@@ -51,12 +34,12 @@ module Git
 		# rem.path =  if (remote.nil? || remote.is_a?(Symbol))
 	end
 
-	# Lists all git repositories in given list of directories that have uncommitted changes
+	# Scans one or more directories for git repositories that have uncommitted changes, and reports them
 	#
 	# @param [Array<String, Pathname>] search_dirs Directories to search for git repositories in
 	# @return [Array<Pathname>] A list of directories representing git repos with uncommitted changes
 	#
-	def dirty_repos(search_dirs=::GIT_REPO_DIRS)
+	def dirty_repos(search_dirs=REPO_DIRS)
 		puts "Scanning #{REPOS.count} git repos..." unless $cli_opts[:quiet]
 		dirty = REPOS.select do |repo|
 			Dir.chdir repo
@@ -67,7 +50,8 @@ module Git
 				"Disgusting! #{dirty.count} dirty repo(s) were found!"
 			else
 				'All clean!'
-			end)
+			end
+		)
 		dirty
 	end
 
