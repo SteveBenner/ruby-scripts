@@ -51,6 +51,6 @@ to the end of the number.") do |size|
 	end
 	cli.on('-nd', '--no-dir', 'Create files in the current working directory.') { opts[:dir] = false }
 	cli.on_tail('-h', '--help', '--usage', 'Display this message.') { puts cli; exit }
-	cli.on_tail('--version', 'Display script version.') { puts opts.version; exit }
+	cli.on_tail('--version', 'Display script version.') { puts cli.version; exit }
 end.parse!
 
