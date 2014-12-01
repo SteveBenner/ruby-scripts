@@ -4,6 +4,7 @@
 # 
 # @author Stephen Benner
 #
+# todo: add ENV var for setting dir
 require 'optparse'
 require 'pathname'
 require 'fileutils'
