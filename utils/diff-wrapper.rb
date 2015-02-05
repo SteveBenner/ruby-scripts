@@ -24,7 +24,7 @@ DIFFTOOL = '/usr/local/bin/mine' # use RubyMine or any other JetBrains IDE with 
 ENV['PATH'].prepend "#{File.dirname(DIFFTOOL)}:" unless ENV['PATH'] =~ File.dirname(DIFFTOOL)
 
 if File.exist? DIFFTOOL
-	exec "#{DIFFTOOL} diff #{ENV['LOCAL']} #{ENV['REMOTE']}"
+  exec "#{DIFFTOOL} diff #{ENV['LOCAL']} #{ENV['REMOTE']}"
 else
-	abort "ERROR: Unable to locate difftool specified at #{DIFFTOOL}!"
+  abort "ERROR: Unable to locate difftool specified at #{DIFFTOOL}!"
 end

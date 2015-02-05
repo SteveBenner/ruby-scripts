@@ -6,12 +6,12 @@
 require 'colorize'
 
 color_lag = lambda do |ping|
-	lag_color = case ping
-		when 0..149 then :green
-		when 150..299 then :yellow
-		else :red
-	end
-	ping.to_s.colorize color: lag_color
+  lag_color = case ping
+    when 0..149 then :green
+    when 150..299 then :yellow
+    else :red
+  end
+  ping.to_s.colorize color: lag_color
 end
 
 # Data (source: http://forums.na.leagueoflegends.com/board/showthread.php?t=3134222)
@@ -29,19 +29,19 @@ puts "Pinging #{SERVERS.count.to_s.white} servers concurrently, for #{PING_COUNT
 
 threads = SERVERS.collect do |server|
   Thread.new(server) do |server|
-	  begin
-		  results   = `ping -c #{PING_COUNT} #{server}`.scan(/time=(\d*\.\d*)/).flatten.map! &:to_f
-	  rescue
-		  abort 'ERROR: Unable to form a connection; there may be a problem with your network.'
-	  end
-	  avg_latency = results.reduce(:+) / results.count.to_f
-	  lowest     << results.min
-	  highest    << results.max
-	  puts 'Pinging '.white + server.light_blue + ' ' + PING_COUNT.to_s.light_yellow +
-					' times resulted in average latency of: '.white + color_lag.call(avg_latency)
+    begin
+      results   = `ping -c #{PING_COUNT} #{server}`.scan(/time=(\d*\.\d*)/).flatten.map! &:to_f
+    rescue
+      abort 'ERROR: Unable to form a connection; there may be a problem with your network.'
+    end
+    avg_latency = results.reduce(:+) / results.count.to_f
+    lowest     << results.min
+    highest    << results.max
+    puts 'Pinging '.white + server.light_blue + ' ' + PING_COUNT.to_s.light_yellow +
+          ' times resulted in average latency of: '.white + color_lag.call(avg_latency)
   end
 end
 threads.map &:join
 
 puts 'Your lowest recorded ping was '.white + color_lag.call(lowest.min) +
-	   ' and your highest was '.white + color_lag.call(highest.max) + '.'
+     ' and your highest was '.white + color_lag.call(highest.max) + '.'
