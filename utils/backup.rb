@@ -32,6 +32,7 @@ BACKUP_DIR = opts[:dir].absolute? ? opts[:dir] : DEFAULT_BACKUP_DIR.join(opts[:d
 BACKUP_DIR.mkpath unless BACKUP_DIR.directory?
 
 # Note that ARGV is avoided; this is because we want to accept input via Unix pipes
+# todo: improve to be usable with standard arguments as well, i.e.
 $stdin.each do |f|
   file = Pathname f.chomp
   abort "ERROR: All file paths must be absolute! Relative path detected: #{f}" unless file.absolute?
