@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 #
 # A wrapper for the Mac OS X 'split' CLI tool for splitting a file into parts
-# 
+#
 # @author Stephen Benner
 # https://github.com/SteveBenner
 #
@@ -53,4 +53,3 @@ to the end of the number.") do |size|
 	cli.on_tail('-h', '--help', '--usage', 'Display this message.') { puts cli; exit }
 	cli.on_tail('--version', 'Display script version.') { puts cli.version; exit }
 end.parse!
-

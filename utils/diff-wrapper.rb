@@ -18,7 +18,7 @@
 #
 # The signature for the JetBrains 'diff' executable is: <difftool-program> diff <file-1> <file-2>
 
-# todo: take a look at this and see about updating this mess
+# todo: re-evaluate this mess
 
 DIFFTOOL = '/usr/local/bin/mine' # use RubyMine or any other JetBrains IDE with diff capability
 ENV['PATH'].prepend "#{File.dirname(DIFFTOOL)}:" unless ENV['PATH'] =~ File.dirname(DIFFTOOL)

@@ -1,8 +1,9 @@
+#!/usr/bin/env ruby
+#
 # Recursively converts SASS files to alternate syntax
 #
 # @author Stephen Benner
 #
-
 DIR = '<project-root>'
 files = Dir.glob("#{DIR}/**/*.scss")
 files.each { |f| `sass-convert #{f} #{f.sub(/\.scss/, '.sass')}` unless File.exist?(f.sub(/\.scss/, '.sass')) }

@@ -2,7 +2,6 @@
 require 'pathname'
 require 'shellwords'
 require 'uri'
-# require 'git'
 
 $cli_opts ||= {quiet: false}
 
@@ -83,9 +82,26 @@ module Git
 				require 'github_api'
 				GISTS.replace Github.new.gists.list user: USER
 			end
-			gist = GISTS.first { |g| g['id'] == id }
-			gist['description'].strip # return a nice, clean string
+			gist = GISTS.find { |g| g['id'] == id }
+			gist['description'].strip unless gist['description'].nil? # return a nice, clean string
 		end
 	end
 end
 
+# The following code is for renaming Gist directories using their Gist description instead of id
+# NOTE: while attempting to rename folders, I encountered the error "Errno::ENOTEMPTY: Directory not empty"
+# which I discovered to be a result of the file handler being unavailable, a very obscure problem.
+# There is a discussion about the issue here: https://github.com/isaacs/rimraf/issues/25
+# Needless to say, there is no solution right now, and the best ideas is to just restart the script.
+# gist_ids = Git::GISTS.collect { |g| g['id'] }
+# Pathname('~/gists').expand_path.children.select { |dir| gist_ids.include? dir.basename.to_s }
+# 	.each do |gist_dir|
+# 		newpath = gist_dir.dirname + Git.gist_desc(gist_dir.basename.to_s)
+# 		# handle empty descriptions by naming them 'untitled' with an incrementing number suffixed
+# 		if newpath.to_s == gist_dir.dirname.to_s
+# 			duplicate_number = gist_dir.dirname.children(true).select { |c| c.to_s =~ /^untitled/ }.count
+# 			newpath = "#{newpath}/untitled-#{duplicate_number}"
+# 		end
+# 		gist_dir.rename newpath
+# 		puts "#{gist_dir} was renamed to #{newpath}"
+# 	end
