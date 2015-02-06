@@ -6,7 +6,7 @@ require 'uri'
 $cli_opts ||= {quiet: false}
 
 # My local git repositories
-REPO_DIRS = %w[~/github ~/bitbucket]
+REPO_DIRS = %w[~/github ~/github/forks ~/bitbucket]
 REPOS = REPO_DIRS.collect_concat do |dir|
   Pathname(dir).expand_path.children.select { |d| d.join('.git').directory? }
 end
@@ -15,9 +15,19 @@ end
 gh = {host: 'github.com', user: :SteveBenner}
 bb = {host: 'bitbucket.org', user: :SteveBenner09}
 
+class Pathname
+	def git_repo?
+		self.directory? && self.children(false).map(&:to_s).include?('.git')
+	end
+end
+
 module Git
   USER  = 'SteveBenner'
   GISTS = []
+  LOCAL_REPOS = {
+	  github: (Pathname('~/github').expand_path.children + Pathname('~/github/forks').expand_path.children)
+      .select(&:git_repo?)
+  }
 
   class << self
     # Sets the remote tracking directory for the Git repo in given directory
@@ -87,21 +97,3 @@ module Git
     end
   end
 end
-
-# The following code is for renaming Gist directories using their Gist description instead of id
-# NOTE: while attempting to rename folders, I encountered the error "Errno::ENOTEMPTY: Directory not empty"
-# which I discovered to be a result of the file handler being unavailable, a very obscure problem.
-# There is a discussion about the issue here: https://github.com/isaacs/rimraf/issues/25
-# Needless to say, there is no solution right now, and the best ideas is to just restart the script.
-# gist_ids = Git::GISTS.collect { |g| g['id'] }
-# Pathname('~/gists').expand_path.children.select { |dir| gist_ids.include? dir.basename.to_s }
-#   .each do |gist_dir|
-#     newpath = gist_dir.dirname + Git.gist_desc(gist_dir.basename.to_s)
-#     # handle empty descriptions by naming them 'untitled' with an incrementing number suffixed
-#     if newpath.to_s == gist_dir.dirname.to_s
-#       duplicate_number = gist_dir.dirname.children(true).select { |c| c.to_s =~ /^untitled/ }.count
-#       newpath = "#{newpath}/untitled-#{duplicate_number}"
-#     end
-#     gist_dir.rename newpath
-#     puts "#{gist_dir} was renamed to #{newpath}"
-#   end
