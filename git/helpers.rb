@@ -84,10 +84,10 @@ module Git
 
     # Populates the GIST array with Gist data from the GitHub API
     def load_gists(user = USER)
-	    require 'bundler'
-	    Bundler.setup :api
-	    require 'github_api'
-	    GISTS.replace Github.new.gists.list user: user
+      require 'bundler'
+      Bundler.setup :api
+      require 'github_api'
+      GISTS.replace Github.new.gists.list user: user
     end
 
     # @param [String] id The GitHub ID of a Gist within my personal collection
