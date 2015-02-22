@@ -1,5 +1,5 @@
 # Ruby Scripts
-The contents of this repo are are mostly executable CLI scripts, with a few `pry`/`irb` helpers and other Ruby creations thrown in as well. They were created using **MRI `2.0+`** within **Mac OS X 10.9.5**. While they can be assumed functional unless otherwise stated, take into consideration that none have been tested in alternative environments, and most lack formal testing entirely. **Use at your own risk!**
+The contents of this repo are are mostly executable CLI scripts, with a few `pry`/`irb` helpers and other Ruby creations thrown in as well. They were created using **MRI `2.0+`** within **Mac OS X 10.9**. While they can be assumed functional unless otherwise stated, take into consideration that none have been tested in alternative environments, and most lack formal testing entirely. **Use at your own risk!**
 
 ### [Git](git/)
 - `helpers` Adds module `Git` which contains various tools for repo management and misc. Git operations ***@TODO: Build YARD documentation for git helpers***

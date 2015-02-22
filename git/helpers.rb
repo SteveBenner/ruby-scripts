@@ -16,16 +16,16 @@ gh = {host: 'github.com', user: :SteveBenner}
 bb = {host: 'bitbucket.org', user: :SteveBenner09}
 
 class Pathname
-	def git_repo?
-		self.directory? && self.children(false).map(&:to_s).include?('.git')
-	end
+  def git_repo?
+    self.directory? && self.children(false).map(&:to_s).include?('.git')
+  end
 end
 
 module Git
   USER  = 'SteveBenner'
   GISTS = []
   LOCAL_REPOS = {
-	  github: (Pathname('~/github').expand_path.children + Pathname('~/github/forks').expand_path.children)
+    github: (Pathname('~/github').expand_path.children + Pathname('~/github/forks').expand_path.children)
       .select(&:git_repo?)
   }
 
@@ -82,16 +82,19 @@ module Git
       end
     end
 
+    # Populates the GIST array with Gist data from the GitHub API
+    def load_gists(user = USER)
+	    require 'bundler'
+	    Bundler.setup :api
+	    require 'github_api'
+	    GISTS.replace Github.new.gists.list user: user
+    end
+
     # @param [String] id The GitHub ID of a Gist within my personal collection
     # @return [String] if a Gist is found whose id matches the one supplied,
     # @return [NilClass] if no matching Gist is found within the collection
     def gist_desc(id)
-      if GISTS.empty?
-        require 'bundler'
-        Bundler.setup :api
-        require 'github_api'
-        GISTS.replace Github.new.gists.list user: USER
-      end
+      load_gists if GISTS.empty?
       gist = GISTS.find { |g| g['id'] == id }
       gist['description'].strip unless gist['description'].nil? # return a nice, clean string
     end
