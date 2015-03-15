@@ -98,5 +98,14 @@ module Git
       gist = GISTS.find { |g| g['id'] == id }
       gist['description'].strip unless gist['description'].nil? # return a nice, clean string
     end
+
+	  # @param [String] The GitHub ID of a Gist within my personal collection
+	  # @return [Integer] number of Stars the Gist has
+		def gist_stars(id)
+			require 'open-uri' unless defined? OpenURI
+			require 'nokogiri' unless defined? Nokogiri
+			html = open("https://gist.github.com/#{USER}/#{id}").read
+			Nokogiri::XML(html).css('a[aria-label="Stars"] .counter').text.to_i
+		end
   end
 end
