@@ -1,10 +1,11 @@
 #!/usr/bin/env ruby
 #
 # Copy files to a local backup directory
-# 
+#
 # @author Stephen Benner
 #
 # todo: add ENV var for setting dir
+# todo: FIX THIS SCRIPT!
 require 'optparse'
 require 'pathname'
 require 'fileutils'
