@@ -1,4 +1,4 @@
-#! /usr/bin/env ruby
+#!/usr/bin/env ruby
 #
 # For a ton of information about this topic, see the stack overflow question below:
 # - http://stackoverflow.com/questions/255202/how-do-i-view-git-diff-output-with-a-visual-diff-program
