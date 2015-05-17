@@ -1,7 +1,7 @@
 # Ruby Scripts
 This is where I keep all my standalone Ruby creations such as executable CLI tools, modules for use in `rib` / `pry` console, useful snippets, and more.
 
-They were created using **MRI `2.0+`** within **Mac OS X 10.9**. While they can be assumed functional unless otherwise stated, take into consideration that none have been tested in alternative environments, and most lack formal testing entirely. **Use at your own risk!**
+Scripts are created using **MRI `2.0+`** (unless otherwise indicated) on **Mac OS X 10.9**.
 
 **DISCLAIMER:** Files in this repository may contain code taken from online sources for which I claim neither ownership nor authorship. I will do my best to attribute credit where due, and to supply and adhere to any relevant licenses for such code. If detected, please report improper licensing or usage of any material within this repository via Github issue.
 
@@ -10,15 +10,16 @@ They were created using **MRI `2.0+`** within **Mac OS X 10.9**. While they can 
 ### [Developer Tools](dev-tools/)
 Things that make it easier to develop software and work with source code.
 
-- `git` Adds module `Git` which contains various tools for repo management and misc. Git operations
+- `git` Adds module `Git` which contains helpers for repo management and Git operations
+
+  Several examples of using Ruby to work with Git are described [here][2], with annotated source.
+- `diff-wrapper` Used to launch a visual `diff` tool (RubyMine in this case) for viewing `git diff` output [^git-diff-so-thread]
 - ~~~`sass-convert-dir`~~~ **This is fairly useless** *(now obsoleted by builtin SASS feature)*
 
-### [Utilities](util/)
-Various scripts I wrote to make my life easier, or just for fun/experimentation.
+### [System Utilities](system-utils/)
+Scripts for performing various useful operations in Unix systems.
 
-- `backup` Simple program to copy one or more given files into specified directory, defaults to `~/.backup/`
-- `diff-wrapper` Used to launch a visual `diff` tool (RubyMine in this case) for viewing `git diff` output [^git-diff-so-thread]
-
+- `backup` Simple program to copy one or more given files into specified directory
 - `shortcuttr` Lazy way to make an executable script from a single text string via CLI
 - `split` Wraps the system tool for splitting files, offering more features and utility
 
@@ -30,16 +31,14 @@ Various scripts I wrote to make my life easier, or just for fun/experimentation.
 
 
 ## Submodules
-Most of my Ruby code exists within projects that have repos of their own. View their original sources:
+Additional scripts are kept in separate repos, and included via Git submodule:
 
+- ### [Mac Fixes](https://github.com/SteveBenner/mac-osx-fixes)
+  Run-once Ruby solutions to common problems plaguing Mac OS X
+- ### [Git Hooks](https://github.com/SteveBenner/git-hooks)
 
-### [Mac Fixes](https://github.com/SteveBenner/mac-osx-fixes)
-Run-once Ruby solutions to common problems plaguing Mac OS X
-### [Git Hooks](https://github.com/SteveBenner/git-hooks)
-
----
-**DISCLAIMER**: Files in this repository may contain code taken from online sources for which I claim neither ownership nor authorship. I will do my best to attribute credit where due, and to supply and adhere to any relevant licenses for such code. If detected, please report improper licensing or usage of any material within this repository by creating an issue.
 
 [1]: https://bitbucket.org/SteveBenner09/sb-git
+[2]: dev-tools/git.md
 
 [^git-diff-so-thread]: See [this Stack Overflow thread](http://stackoverflow.com/questions/255202/how-do-i-view-git-diff-output-with-a-visual-diff-program/) for more info about using external `diff` tools with git.
