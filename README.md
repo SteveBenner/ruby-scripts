@@ -1,15 +1,24 @@
 # Ruby Scripts
-The contents of this repo are are mostly executable CLI scripts, with a few `pry`/`irb` helpers and other Ruby creations thrown in as well. They were created using **MRI `2.0+`** within **Mac OS X 10.9**. While they can be assumed functional unless otherwise stated, take into consideration that none have been tested in alternative environments, and most lack formal testing entirely. **Use at your own risk!**
+This is where I keep all my standalone Ruby creations such as executable CLI tools, modules for use in `rib` / `pry` console, useful snippets, and more.
 
-### [Git](git/)
-- `helpers` Adds module `Git` which contains various tools for repo management and misc. Git operations ***@TODO: Build YARD documentation for git helpers***
+They were created using **MRI `2.0+`** within **Mac OS X 10.9**. While they can be assumed functional unless otherwise stated, take into consideration that none have been tested in alternative environments, and most lack formal testing entirely. **Use at your own risk!**
 
-### [Utilities](utils/)
+**DISCLAIMER:** Files in this repository may contain code taken from online sources for which I claim neither ownership nor authorship. I will do my best to attribute credit where due, and to supply and adhere to any relevant licenses for such code. If detected, please report improper licensing or usage of any material within this repository via Github issue.
+
+---
+
+### [Developer Tools](dev-tools/)
+Things that make it easier to develop software and work with source code.
+
+- `git` Adds module `Git` which contains various tools for repo management and misc. Git operations
+- ~~~`sass-convert-dir`~~~ **This is fairly useless** *(now obsoleted by builtin SASS feature)*
+
+### [Utilities](util/)
 Various scripts I wrote to make my life easier, or just for fun/experimentation.
 
 - `backup` Simple program to copy one or more given files into specified directory, defaults to `~/.backup/`
 - `diff-wrapper` Used to launch a visual `diff` tool (RubyMine in this case) for viewing `git diff` output [^git-diff-so-thread]
-- ~~~`sass-convert-dir`~~~ **This is fairly useless** *(now obsoleted by builtin SASS feature)*
+
 - `shortcuttr` Lazy way to make an executable script from a single text string via CLI
 - `split` Wraps the system tool for splitting files, offering more features and utility
 

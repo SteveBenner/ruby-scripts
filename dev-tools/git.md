@@ -1,10 +1,10 @@
 # Using Ruby to work with Git
 Git is complex, laborious, and **insanely powerful**. Here is some Ruby code I wrote to do Git stuff.
 
-**Note:** *all embedded Ruby code relies on the file `helpers.rb` being loaded.*
+**Note:** *the following Ruby code relies on file [`git.rb`][3] being loaded.*
 
 ### Renaming locally-downloaded Gist directories
-If you clone a Gist, it creates a folder named with the Gist's ID. Ew. Just ew.
+If you clone a Gist, the resulting directory is named after the Gist's ID. Ew. Just ew.
 
 So I grabbed the Gist data for my user via [the official API][1] and stored it in `Gist::GISTS`, then ran the code below, which successfully renamed most of the directories. It ended up failing partway through, spitting out `Errno::ENOTEMPTY: Directory not empty` which I later discovered to be a result of the file handler being unavailable, a very obscure problem, real low-level shit. [More discussion about this error can be found here](https://github.com/isaacs/rimraf/issues/25).
 
@@ -36,7 +36,9 @@ LOCAL_REPOS[:github].each do |dir_path|
   `git init`
 end
 ```
-
+---
+**TODO:** Build YARD docs
 
 [1]: https://developer.github.com/v3/gists/
 [2]: https://github.com/SteveBenner/git-hooks#configuration
+[3]: git.rb
