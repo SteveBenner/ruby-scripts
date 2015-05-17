@@ -29,7 +29,6 @@ Scripts for performing various useful operations in Unix systems.
 ### [Experimental](experiment/)
 - `.slimrc` This is nothing more than an idea I had for a Slim 'rc' file, and it's not finished yet
 
-
 ## Submodules
 Additional scripts are kept in separate repos, and included via Git submodule:
 
