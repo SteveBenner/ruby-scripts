@@ -12,7 +12,7 @@ Things that make it easier to develop software and work with source code.
 
 - `git` Adds module `Git` which contains helpers for repo management and Git operations
 
-  Several examples of using Ruby to work with Git are described [here][2], with annotated source.
+  [Examples of using Ruby to work with Git][2] (annotated code)
 - `diff-wrapper` Used to launch a visual `diff` tool (RubyMine in this case) for viewing `git diff` output [^git-diff-so-thread]
 - ~~~`sass-convert-dir`~~~ **This is fairly useless** *(now obsoleted by builtin SASS feature)*
 
@@ -33,7 +33,9 @@ Scripts for performing various useful operations in Unix systems.
 Additional scripts are kept in separate repos, and included via Git submodule:
 
 - ### [Mac Fixes](https://github.com/SteveBenner/mac-osx-fixes)
+
   Run-once Ruby solutions to common problems plaguing Mac OS X
+  
 - ### [Git Hooks](https://github.com/SteveBenner/git-hooks)
 
 
