@@ -18,7 +18,7 @@ optparser = OptionParser.new do |cli|
   cli.summary_width  = 24
   cli.summary_indent = ' ' * 2
   cli.banner = 'CLI tool for adding a user to your OS X system' + $/ +
-	  'Usage: adduser [options] USERNAME'
+    'Usage: adduser [options] USERNAME'
   cli.on('-f', '--full-name', 'Full name for user') { |name| opts[:RealName] = name }
   cli.on('-s', '--shell', 'Shell for user') { |path| opts[:UserShell] = path }
   cli.on('-i', '--id', 'UniqueID of user (must be unique)') { |id| opts[:UniqueID] = id }
