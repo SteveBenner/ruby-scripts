@@ -83,6 +83,7 @@ module Git
     end
 
     # Populates the GIST array with Gist data from the GitHub API
+    # todo: gather star count for each gist, and append to returned data struct
     def load_gists(user = USER)
       require 'bundler'
       Bundler.setup :api
