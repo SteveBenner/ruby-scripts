@@ -5,11 +5,11 @@ require 'uri'
 
 $cli_opts ||= {quiet: false}
 
-# My local git repositories
-REPO_DIRS = %w[~/github ~/github/forks ~/bitbucket]
-REPOS = REPO_DIRS.collect_concat do |dir|
-  Pathname(dir).expand_path.children.select { |d| d.join('.git').directory? }
-end
+# Aggregate local Git repo paths (specified via ENV variable)
+REPO_DIRS = ENV['GIT_REPOS'].split(':').map { |path| Pathname(path).expand_path }
+# REPOS = REPO_DIRS.collect_concat do |dir|
+#   Pathname(dir).expand_path.children.select { |d| d.join('.git').directory? }
+# end
 
 # Identifiers representing host URI's I use for git repositories
 gh = {host: 'github.com', user: :SteveBenner}
@@ -24,10 +24,11 @@ end
 module Git
   USER  = 'SteveBenner'
   GISTS = []
-  LOCAL_REPOS = {
-    github: (Pathname('~/github').expand_path.children + Pathname('~/github/forks').expand_path.children)
-      .select(&:git_repo?)
-  }
+  LOCAL_REPOS = Hash[REPO_DIRS.map { |dir| [dir.basename.to_s, dir.children.select(&:git_repo?)] }]
+  # {
+  #   github: (Pathname('~/github').expand_path.children + Pathname('~/github/forks').expand_path.children)
+  #     .select(&:git_repo?)
+  # }
 
   class << self
     # Sets the remote tracking directory for the Git repo in given directory
@@ -43,14 +44,14 @@ module Git
       # rem.path =  if (remote.nil? || remote.is_a?(Symbol))
     end
 
-    # Scans one or more directories for git repositories that have uncommitted changes, and reports them
+    # Scans one or more directories for git repositories with uncommitted changes, returning any found
     #
-    # @param [Array<String, Pathname>] search_dirs Directories to search for git repositories in
-    # @return [Array<Pathname>] A list of directories representing git repos with uncommitted changes
+    # @param [Array<String, Pathname>] search_dirs Directories to scan for git repos with uncommitted changes
+    # @return [Hash{String => Pathname, String}] List of repositories with uncommitted changes, sorted by parent dir
     #
     def dirty_repos(search_dirs=REPO_DIRS)
       puts "Scanning #{REPOS.count} git repos..." unless $cli_opts[:quiet]
-      dirty = REPOS.select do |repo|
+      dirty = LOCAL_REPOS.select do |repo|
         Dir.chdir repo
         !`git diff`.empty?
       end
