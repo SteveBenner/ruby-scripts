@@ -19,3 +19,8 @@ Thumbs.db
 
 # Bundler
 vendor/ruby
+
+# Local assets and generated files
+public/**
+!public/list-media-files.rb
+!public/index.slim

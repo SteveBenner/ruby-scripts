@@ -49,9 +49,9 @@ module Git
     # @param [Array<String, Pathname>] search_dirs Directories to scan for git repos with uncommitted changes
     # @return [Hash{String => Pathname, String}] List of repositories with uncommitted changes, sorted by parent dir
     #
-    def dirty_repos(search_dirs=REPO_DIRS)
-      puts "Scanning #{REPOS.count} git repos..." unless $cli_opts[:quiet]
-      dirty = LOCAL_REPOS.select do |repo|
+    def dirty_repos(search_dirs=LOCAL_REPOS.values.flatten)
+      puts "Scanning #{search_dirs.count} git repos..." unless $cli_opts[:quiet]
+      dirty = search_dirs.select do |repo|
         Dir.chdir repo
         !`git diff`.empty?
       end
@@ -101,7 +101,7 @@ module Git
       gist['description'].strip unless gist['description'].nil? # return a nice, clean string
     end
 
-    # @param [String] The GitHub ID of a Gist within my personal collection
+    # @param [String] id The GitHub ID of a Gist within my personal collection
     # @return [Integer] number of Stars the Gist has
     def gist_stars(id)
       require 'open-uri' unless defined? OpenURI
