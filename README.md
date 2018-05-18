@@ -10,9 +10,6 @@ Scripts are created using **MRI `2.0+`** (unless otherwise indicated) on **Mac O
 ### [Developer Tools](dev-tools/)
 Things that make it easier to develop software and work with source code.
 
-- `git` Adds module `Git` which contains helpers for repo management and Git operations
-
-  [Examples of using Ruby to work with Git][2] (annotated code)
 - `diff-wrapper` Used to launch a visual `diff` tool (RubyMine in this case) for viewing `git diff` output [^git-diff-so-thread]
 - ~~~`sass-convert-dir`~~~ **This is fairly useless** *(now obsoleted by builtin SASS feature)*
 
