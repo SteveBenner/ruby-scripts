@@ -1,0 +1,10 @@
+# Godly configuration (new gem idea)
+
+when_i_leave:
+  conditions:
+    run:
+      - type: geographical
+
+  actions:
+    - log
+  # ...

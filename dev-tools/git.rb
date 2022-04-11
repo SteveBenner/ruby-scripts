@@ -7,6 +7,7 @@ $cli_opts ||= {quiet: false}
 
 # Aggregate local Git repo paths (specified via ENV variable)
 REPO_DIRS = ENV['GIT_REPOS'].split(':').map { |path| Pathname(path).expand_path }
+puts "No Git repositories detected! (Specify via ENV variable 'GIT_REPOS')" if REPO_DIRS.empty?
 # REPOS = REPO_DIRS.collect_concat do |dir|
 #   Pathname(dir).expand_path.children.select { |d| d.join('.git').directory? }
 # end
@@ -25,6 +26,8 @@ module Git
   USER  = 'SteveBenner'
   GISTS = []
   LOCAL_REPOS = Hash[REPO_DIRS.map { |dir| [dir.basename.to_s, dir.children.select(&:git_repo?)] }]
+  LOG_DIR = Pathname('~/.log').expand_path
+  LOG_DIR.mkpath
   # {
   #   github: (Pathname('~/github').expand_path.children + Pathname('~/github/forks').expand_path.children)
   #     .select(&:git_repo?)
@@ -71,9 +74,9 @@ module Git
     # @param [String] msg The commit message, which by default simply explains the ad-hoc nature of the commit
     #
     def quick_commit(repo, msg='WARNING: This commit was made automatically by a script, and should be reviewed!')
-      log = File.open "#{Dir.home}/.logs/git.txt", 'a'
+      log = File.open "#{LOG_DIR}/git.txt", 'a'
       Dir.chdir Pathname(repo).expand_path do |p|
-        print "Performing quick commit for #{File.basename repo}... " unless $cli_opts[:quiet]
+        print "Performing quick commit for '#{File.basename repo}'...\n" unless $cli_opts[:quiet]
         log.puts `git add -A`
         log.puts `git commit -m "#{msg}"`
         log.puts
