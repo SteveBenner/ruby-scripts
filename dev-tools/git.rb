@@ -3,7 +3,7 @@ require 'pathname'
 require 'shellwords'
 require 'uri'
 
-$cli_opts ||= {quiet: false}
+$cli_opts ||= { quiet: false }
 
 # Aggregate local Git repo paths (specified via ENV variable)
 REPO_DIRS = ENV['GIT_REPOS'].split(':').map { |path| Pathname(path).expand_path }
@@ -43,7 +43,7 @@ module Git
     #
     def rset(local_repo, remote="/#{Pathname.pwd.basename}.git")
       # Set the remote repository name to that of the current directory as a default
-      rem = RemoteRepo.new URI remote.to_s
+      RemoteRepo.new URI remote.to_s
       # rem.path =  if (remote.nil? || remote.is_a?(Symbol))
     end
 
