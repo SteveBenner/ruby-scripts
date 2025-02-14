@@ -49,6 +49,8 @@ module Git
 
     # Scans one or more directories for git repositories with uncommitted changes, returning any found
     #
+    # TODO: upgrade to look for un-PUSHED changes, not just uncommited changes
+    #
     # @param [Array<String, Pathname>] search_dirs Directories to scan for git repos with uncommitted changes
     # @return [Hash{String => Pathname, String}] List of repositories with uncommitted changes, sorted by parent dir
     #
